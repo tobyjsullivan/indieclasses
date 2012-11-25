@@ -3,6 +3,7 @@ class View {
 	private $layout = "main";
 	private $page;
 	private $blocks;
+	private $active_block = null;
 
 	public function __construct($page) {
 		$this->page = $page;
@@ -15,6 +16,23 @@ class View {
 
 		$this->blocks['content'] = $this->_render($page_file);
 		return $this->_render($layout_file);
+	}
+
+	public function start($block_name) {
+		$this->active_block = $block_name;
+
+		ob_start();
+	}
+
+	public function end() {
+		$block_content = ob_get_clean();
+		
+		// Perform check after ob_end to avoid getting caught inside buffer
+		if($this->active_block == null) {
+			throw new Exception('No active block');
+		}
+
+		$this->blocks[$this->active_block] = $block_content;
 	}
 
 	private function _render($view_file) {
