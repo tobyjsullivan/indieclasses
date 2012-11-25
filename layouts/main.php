@@ -23,6 +23,7 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	<script src="js/jquery.js" type="text/javascript"></script>
 
 	<title><?= $this->fetch('page_title') ?> - <?= Configure::read('Company.name') ?></title>
 </head>
