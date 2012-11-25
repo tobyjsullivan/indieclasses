@@ -1,0 +1,1 @@
+<p>Class ID: <?= $_GET['class'] ?></p>
