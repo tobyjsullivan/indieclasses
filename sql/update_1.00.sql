@@ -43,7 +43,7 @@ INSERT INTO `applied_updates` (`id`, `version`, `applied`) VALUES
 
 CREATE TABLE IF NOT EXISTS `classes` (
   `id` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `url` varchar(8) NOT NULL,
+  `token` varchar(8) NOT NULL,
   `title` varchar(100) NOT NULL,
   `teacher_id` int(6) unsigned zerofill NOT NULL,
   `space_id` int(6) unsigned zerofill NOT NULL,

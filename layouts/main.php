@@ -25,7 +25,7 @@
 	<![endif]-->
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<?php
-	echo $this->fetch('scripts');
+	echo $this->fetch('script');
 	?>
 
 	<title><?= $this->fetch('page_title') ?> - <?= Configure::read('Company.name') ?></title>

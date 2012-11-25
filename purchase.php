@@ -1,10 +1,11 @@
 <?php
 require_once('init.php');
 
-$class_id = $_GET['class'];
+$class_token = $_GET['class'];
+
+$class = _Class::lookupByToken($class_token);
 
 $view = new View("purchase");
-$view->set('page_title', 'Register for Class');
-$view->set('class_id', $class_id);
+$view->set('class_id', $class->getId());
 echo $view->render();
 ?>
