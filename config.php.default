@@ -5,6 +5,10 @@ Configure::write('Company.url', 'http://indieclasses.com');
 Configure::write('Company.email', 'contact@indieclasses.com');
 Configure::write('Company.no-reply', 'no-reply@indieclasses.com');
 
+// Stripe Configuration
+Configure::write('Stripe.pkey', '');
+Configure::write('Stripe.skey', '');
+
 // MySQL Configuration
 Configure::write('Mysql.hostname', 'localhost');
 Configure::write('Mysql.username', '');

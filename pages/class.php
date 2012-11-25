@@ -9,7 +9,7 @@ $this->end();
 	<div class="three columns">
 		<div class="price-box">
 			<p class="price">$25</p>
-			<p><a href="#" class="register-now button remove-bottom">Register Now</a></p>
+			<p><a href="<?= 'purchase.php?class='.$this->fetch('class_id') ?>" class="register-now button remove-bottom">Register Now</a></p>
 			<p>This class needs 10 more students*</p>
 			<p class="help remove-bottom"><a href="#how-it-works">* What is this?</a></p>
 		</div>
@@ -21,7 +21,7 @@ $this->end();
 		<p>Location: Vancouver Corporate Yoga, 134 - 1055 W Georgia St, Vancouver, BC</p>
 		<p><strong>Registration Deadline: 9:00 am November 28th</strong></p>
 		<h3>Invite friends to this class</h3>
-		<p>Use this link: <strong><?= Configure::read('Company.url').'/'.$_GET['class'] ?></strong></p>
+		<p>Use this link: <strong><?= Configure::read('Company.url').'/'.$this->fetch('class_id') ?></strong></p>
 	</div>
 	<div class="three columns">
 		<div class="picture">

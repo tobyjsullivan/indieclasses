@@ -24,6 +24,9 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script src="js/jquery.js" type="text/javascript"></script>
+	<?php
+	echo $this->fetch('scripts');
+	?>
 
 	<title><?= $this->fetch('page_title') ?> - <?= Configure::read('Company.name') ?></title>
 </head>
