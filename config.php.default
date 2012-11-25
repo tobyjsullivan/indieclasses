@@ -1,0 +1,10 @@
+<?php
+
+// MySQL Configuration
+Configure::Write('Mysql.Hostname', 'localhost');
+Configure::Write('Mysql.Username', '');
+Configure::Write('Mysql.Password', '');
+Configure::Write('Mysql.Database', '');
+
+
+?>
