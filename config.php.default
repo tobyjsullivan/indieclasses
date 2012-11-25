@@ -1,10 +1,22 @@
 <?php
+// Company Configuration
+Configure::write('Company.name', 'IndieClasses.com');
+Configure::write('Company.url', 'http://indieclasses.com');
+Configure::write('Company.email', 'contact@indieclasses.com');
+Configure::write('Company.no-reply', 'no-reply@indieclasses.com');
 
 // MySQL Configuration
-Configure::Write('Mysql.Hostname', 'localhost');
-Configure::Write('Mysql.Username', '');
-Configure::Write('Mysql.Password', '');
-Configure::Write('Mysql.Database', '');
+Configure::write('Mysql.hostname', 'localhost');
+Configure::write('Mysql.username', '');
+Configure::write('Mysql.password', '');
+Configure::write('Mysql.database', '');
+
+// Mail Configuration
+Configure::write('Mail.host', 'ssl://smtp.gmail.com');
+Configure::write('Mail.port', '465');
+Configure::write('Mail.authenticate', true);
+Configure::write('Mail.username', '');
+Configure::write('Mail.password', '');
 
 
 ?>

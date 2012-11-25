@@ -7,3 +7,4 @@ require_once('init.php');
 <body>
 <h1>IndieClasses.com</h1>
 <p>Hello, World!</p>
+
