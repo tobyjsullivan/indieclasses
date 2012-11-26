@@ -92,6 +92,12 @@ class _Class {
 		return $this->price;
 	}
 
+	public function getDeadline() {
+		$this->ensureDataFetched();
+
+		return $this->deadline;
+	}
+
 	private function ensureDataFetched() {
 		if($this->data_fetched) {
 			return;
@@ -134,8 +140,8 @@ class _Class {
 		$this->price = $row['price'];
 		$this->min_attendees = $row['min_attendees'];
 		$this->max_attendees = $row['max_attendees'];
-		$this->deadline = $row['deadline'];
-		$this->start_date = $row['start_date'];
+		$this->deadline = strtotime($row['deadline']);
+		$this->start_date = strtotime($row['start_date']);
 		$this->duration = $row['duration'];
 		$this->repetitions = $row['repetitions'];
 		$this->description = $row['description'];

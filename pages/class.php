@@ -23,15 +23,22 @@ $this->end();
 			$below_min = $num_registered < $min;
 			$full = $num_registered >= $max;
 
-			if(!$full) {
+			$past_deadline = time() > $class->getDeadline();
+
+			if(!($full || $past_deadline)) {
 				?>
 				<p><a href="<?= 'purchase.php?class='.$class->getToken() ?>" class="register-now button remove-bottom">Register Now</a></p>
 				<?php
 			}
 
-			if($below_min) {
+			if($past_deadline) {
+				?>
+				<p>Sorry, the registration deadline for this class has passed.</p>
+				<?php
+			} else if($below_min) {
 				?>
 				<p>This class needs <?= $min - $num_registered ?> more students*</p>
+				<p class="help remove-bottom"><a href="#how-it-works">* What is this?</a></p>
 				<?php
 			} else if (!$full) {
 				?>
@@ -43,7 +50,6 @@ $this->end();
 				<?php
 			}
 			?>
-			<p class="help remove-bottom"><a href="#how-it-works">* What is this?</a></p>
 		</div>
 	</div>
 	<div class="ten columns">
