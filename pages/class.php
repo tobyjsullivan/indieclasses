@@ -74,7 +74,7 @@ $this->end();
 		<br />
 		One hour classes 6:15 pm Thursdays November 29th to December 20th. This class is suitable for all levels and mats can be provided.<br />
 		<br />
-		It only takes 8 students to put on this series so sign up now!<br />
+		It only takes 10 students to put on this series so sign up now!<br />
 		<br />
 		Namaste,<br />
 		Hailey</p>
