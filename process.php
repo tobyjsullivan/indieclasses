@@ -47,6 +47,15 @@ $customer = Stripe_Customer::create(array(
 
 $reg->setStripeCustomerId($customer['id']);
 
+// Email confirmation
+$confirm_email_view = new View("emails/register_confirm");
+$email_content = $confirm_email_view->render();
+$mailer = new Mailer();
+$mailer->setTo($email);
+$mailer->setSubject('You are registered for Four Weeks of Hatha with Hailey');
+$mailer->setBody($email_content);
+$mailer->send();
+
 $view = new View('process');
 echo $view->render();
 ?>

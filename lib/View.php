@@ -11,10 +11,11 @@ class View {
 	}
 
 	public function render() {
-		$layout_file = "layouts/".$this->layout.".php";
 		$page_file = "pages/".$this->page.".php";
-
 		$this->blocks['content'] = $this->_render($page_file);
+
+		// Compute layout after page rendered incase page overwrote layout name
+		$layout_file = "layouts/".$this->layout.".php";
 		return $this->_render($layout_file);
 	}
 

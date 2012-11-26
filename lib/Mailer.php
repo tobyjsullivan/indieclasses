@@ -1,5 +1,6 @@
 <?php
 require_once('Mail.php');
+require_once('Mail/mime.php');
 
 class Mailer {
 	private $from;
@@ -14,7 +15,7 @@ class Mailer {
 	private $password;
 
 	public function __construct() {
-		$this->from = Configure::read('Company.name').' <'.Configure::read('Company.no-reply').'>'; // IndieClasses.com <no-reply@indieclasses.com>
+		$this->from = '"'.Configure::read('Company.name').'" <'.Configure::read('Company.no-reply').'>'; // IndieClasses.com <no-reply@indieclasses.com> // Configure::read('Company.no-reply'); 
 		$this->to = null;
 		$this->subject = null;
 		$this->body = null;
@@ -44,17 +45,22 @@ class Mailer {
 				'To' => $this->to,
 				'Subject' => $this->subject
 			);
-		$smtp = Mail::factory('smtp',
-				array(
+
+		$mail_config = array(
 						'host' => $this->host,
 						'port' => $this->port,
 						'auth' => $this->auth,
 						'username' => $this->username,
 						'password' => $this->password
-					)
-			);
+					);
 
-		$mail = $smtp->send($this->to, $headers, $this->body);
+		$smtp = Mail::factory('Smtp', $mail_config);
+		
+		$crlf = "\n";
+		$mime = new Mail_mime($crlf);
+		$mime->setHTMLBody($this->body);
+
+		$mail = $smtp->send($this->to, $mime->headers($headers), $mime->get());
 
 		if(PEAR::isError($mail)) {
 			throw new MailerException('Error sending mail: '.$mail->getMessage());
