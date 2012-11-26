@@ -49,12 +49,23 @@ $reg->setStripeCustomerId($customer['id']);
 
 // Email confirmation
 $confirm_email_view = new View("emails/register_confirm");
-$email_content = $confirm_email_view->render();
-$mailer = new Mailer();
-$mailer->setTo($email);
-$mailer->setSubject('You are registered for Four Weeks of Hatha with Hailey');
-$mailer->setBody($email_content);
-$mailer->send();
+$confirm_email_content = $confirm_email_view->render();
+$confirm_mailer = new Mailer();
+$confirm_mailer->setTo($email);
+$confirm_mailer->setSubject('You are registered for Four Weeks of Hatha with Hailey');
+$confirm_mailer->setBody($confirm_email_content);
+$confirm_mailer->send();
+
+// Email teacher notification
+$name = $fname.' '.$lname;
+$notify_email_view = new View("emails/teacher_notify");
+$notify_email_view->set('registration', $reg);
+$notify_email_content = $notify_email_view->render();
+$notify_mailer = new Mailer();
+$notify_mailer->setTo($reg->getClass()->getTeacher()->getEmail());
+$notify_mailer->setSubject($name.' has registered for your class');
+$notify_mailer->setBody($notify_email_content);
+$notify_mailer->send();
 
 $view = new View('process');
 echo $view->render();

@@ -19,16 +19,16 @@ $this->layout = "email";
 		registered by the deadline, we'll send you an email letting you know the class has been 
 		cancelled and you will not be charged.</p>
 
-	<table>
+	<table width="100%">
 		<tr>
-			<th>Class</th>
-			<th>Fee</th>
-			<th>Deadline</th>
+			<th style="text-align: left;">Class</th>
+			<th style="text-align: center;">Fee</th>
+			<th style="text-align: center;">Deadline</th>
 		</tr>
 		<tr>
-			<td>Four Weeks of Hatha with Hailey</td>
-			<td>$25.00</td>
-			<td>November 28th, 2012</td>
+			<td style="text-align: left;">Four Weeks of Hatha with Hailey</td>
+			<td style="text-align: center;">$25.00</td>
+			<td style="text-align: center;">November 28th, 2012</td>
 		</tr>
 	</table>
 

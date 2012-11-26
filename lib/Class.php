@@ -1,5 +1,6 @@
 <?php
 require_once('lib/Database.php');
+require_once('lib/Teacher.php');
 
 class _Class {
 	private $id;
@@ -53,6 +54,12 @@ class _Class {
 
 		return $this->title;
 	}	
+
+	public function getTeacher() {
+		$this->ensureDataFetched();
+
+		return new Teacher($this->teacher_id);
+	}
 
 	public function getMinAttendees(){ 
 		$this->ensureDataFetched();
