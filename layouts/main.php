@@ -34,7 +34,7 @@
 	<div class="container">
 		<div class="sixteen columns">
 			<h1 class="title remove-bottom"><?= Configure::read('Company.name') ?></h1>
-			<p><em>Independent Yoga</em></p>
+			<p><em>Independent Yoga - Empowering Teachers</em></p>
 		</div>
 		<?php
 		echo $this->fetch('content');
