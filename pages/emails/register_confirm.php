@@ -15,14 +15,14 @@ $this->layout = "email";
 	<p>Your credit card has not been charged yet. Here's what will happen next:</p>
 	<p>The deadline for registrations for this class is November 28th, 2012. If enough
 		people register for the class by then, we will charge your card (along with everybody else's)
-		and the you'll be on the attendee list for the class! If, however, not enough people are 
+		and you'll be put on the attendee list for the class! If, however, not enough people are 
 		registered by the deadline, we'll send you an email letting you know the class has been 
 		cancelled and you will not be charged.</p>
 
 	<table>
 		<tr>
 			<th>Class</th>
-			<th>Registration Fee</th>
+			<th>Fee</th>
 			<th>Deadline</th>
 		</tr>
 		<tr>
