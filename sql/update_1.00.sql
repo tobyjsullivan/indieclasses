@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
   `repetitions` int(2) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `url` (`url`)
+  UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
