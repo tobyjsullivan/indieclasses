@@ -42,6 +42,50 @@ class _Class {
 		return $this->id;
 	}
 
+	public function getToken(){ 
+		$this->ensureDataFetched();
+
+		return $this->token;
+	}	
+
+	public function getTitle(){ 
+		$this->ensureDataFetched();
+
+		return $this->title;
+	}	
+
+	public function getMinAttendees(){ 
+		$this->ensureDataFetched();
+
+		return $this->min_attendees;
+	}	
+
+	public function getMaxAttendees(){ 
+		$this->ensureDataFetched();
+
+		return $this->max_attendees;
+	}
+
+	private $num_registered = null;
+	public function getNumRegistered() {
+		if($this->num_registered == null) {
+			$db = new Database();
+
+			$class_id = $db->escape_string($this->id);
+			$sql = "SELECT COUNT(id) AS num FROM registrations WHERE class_id='{$class_id}'";
+
+			if(!($res = $db->query($sql))) {
+				throw new Exception('Error fetching registration count: '.$db->error);
+			}
+
+			$row = $res->fetch_assoc();
+
+			$this->num_registered = $row['num'];
+		}
+
+		return $this->num_registered;
+	}
+
 	public function getPrice() {
 		$this->ensureDataFetched();
 

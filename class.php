@@ -1,10 +1,14 @@
 <?php
 require_once('init.php');
 
-$class_id = $_GET['class'];
+$class_token = $_GET['class'];
+
+$class = _Class::lookupByToken($class_token);
+if($class == null) {
+	die('Error: Class could not be found');
+}
 
 $view = new View("class");
-$view->set('page_title', 'Class Information');
-$view->set('class_id', $class_id);
+$view->set('class', $class);
 echo $view->render();
 ?>

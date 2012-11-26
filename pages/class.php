@@ -1,4 +1,10 @@
 <?php
+$class = $this->fetch('class');
+
+$this->start('page_title');
+echo $class->getTitle();
+$this->end();
+
 $this->start('css');
 ?>
 <link rel="stylesheet" href="css/pages.class.css">
@@ -9,8 +15,34 @@ $this->end();
 	<div class="three columns">
 		<div class="price-box">
 			<p class="price">$25</p>
-			<p><a href="<?= 'purchase.php?class='.$this->fetch('class_id') ?>" class="register-now button remove-bottom">Register Now</a></p>
-			<p>This class needs 10 more students*</p>
+			<?php
+			$num_registered = $class->getNumRegistered();
+			$min = $class->getMinAttendees();
+			$max = $class->getMaxAttendees();
+
+			$below_min = $num_registered < $min;
+			$full = $num_registered >= $max;
+
+			if(!$full) {
+				?>
+				<p><a href="<?= 'purchase.php?class='.$class->getToken() ?>" class="register-now button remove-bottom">Register Now</a></p>
+				<?php
+			}
+
+			if($below_min) {
+				?>
+				<p>This class needs <?= $min - $num_registered ?> more students*</p>
+				<?php
+			} else if (!$full) {
+				?>
+				<p>This class is happening! Register before it is full!</p>
+				<?php
+			} else {
+				?>
+				<p>Sorry, this class is full!</p>
+				<?php
+			}
+			?>
 			<p class="help remove-bottom"><a href="#how-it-works">* What is this?</a></p>
 		</div>
 	</div>
@@ -46,13 +78,13 @@ $this->end();
 	<h2><a name="how-it-works"></a>How <?= Configure::read('Company.name') ?> Works</h2>
 	<p>* Hailey Blackburn is interested in offering a 
 		yoga class independently. In order to do this, she 
-		needs at least 10 students to register and pay
+		needs a minimum number of students to register and pay
 		so she can afford to rent a space and make it
 		worth her time. <?= Configure::read('Company.name') ?> is here to safely
 		and conveniently collect your registration fees on her 
 		behalf. If there are not enough registered students
-		by the deadline, <?= Configure::read('Company.name') ?> will refund all 
-		registration fees to students immediately. Please note 
+		by the deadline, <?= Configure::read('Company.name') ?> will cancel
+		the class and will not charge your credit card. Please note 
 		that any registration fees for successfully filled 
 		classes cannot be refunded and will be paid to Hailey
 		Blackburn.</p>
