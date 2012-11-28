@@ -16,6 +16,7 @@ class _Class {
 	private $duration;
 	private $repetitions;
 	private $description;
+	private $cancelled;
 
 	private $data_fetched = false;
 
@@ -105,6 +106,12 @@ class _Class {
 		return $this->deadline;
 	}
 
+	public function isCancelled() {
+		$this->ensureDataFetched();
+
+		return $this->cancelled != null;
+	}
+
 	private function ensureDataFetched() {
 		if($this->data_fetched) {
 			return;
@@ -126,7 +133,8 @@ class _Class {
 					start_date, 
 					duration, 
 					repetitions, 
-					description
+					description,
+					cancelled
 				FROM classes
 				WHERE id='{$class_id}'
 				LIMIT 1";
@@ -152,6 +160,7 @@ class _Class {
 		$this->duration = $row['duration'];
 		$this->repetitions = $row['repetitions'];
 		$this->description = $row['description'];
+		$this->cancelled = $row['cancelled'];
 
 		$this->data_fetched = true;
  	}

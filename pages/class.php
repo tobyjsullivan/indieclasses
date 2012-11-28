@@ -22,16 +22,21 @@ $this->end();
 
 			$below_min = $num_registered < $min;
 			$full = $num_registered >= $max;
+			$cancelled = $class->isCancelled();
 
 			$past_deadline = time() > $class->getDeadline();
 
-			if(!($full || $past_deadline)) {
+			if(!($full || $past_deadline || $cancelled)) {
 				?>
 				<p><a href="<?= 'purchase.php?class='.$class->getToken() ?>" class="register-now button remove-bottom">Register Now</a></p>
 				<?php
 			}
 
-			if($past_deadline) {
+			if ($cancelled) {
+				?>
+				<p>This class has been cancelled.</p>
+				<?php
+			} else if($past_deadline) {
 				?>
 				<p>Sorry, the registration deadline for this class has passed.</p>
 				<?php
