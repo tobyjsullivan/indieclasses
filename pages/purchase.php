@@ -114,7 +114,7 @@ $this->end();
 	<div class="eight columns">
 		<label for="subscribe">
 			<input type="checkbox" name="subscribe" value="teacher" checked="checked" />
-			Notify me by email of future classes by <?= $class->getTeacher()->getName() ?>
+			Email me about future classes by <?= $class->getTeacher()->getName() ?>
 		</label>
 	</div>
 	<div class="eight columns">
