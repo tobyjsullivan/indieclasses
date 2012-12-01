@@ -54,7 +54,7 @@ function showContact() {
 			$unit = $space->getUnit();
 			$space_line = $space->getName().', '.($unit == null || $unit == ''?'':$unit.' - ').$space->getAddress().', '.$space->getCity();
 			?>
-			<p><strong><a href="/ckdls"><?= $class->getTitle() ?></a></strong><br>
+			<p><strong><a href="<?= '/'.$class->getToken() ?>"><?= $class->getTitle() ?></a></strong><br>
 				<?= $when_line ?>, <?= '$'.$class->getPrice().$qty_line ?><br />
 				by <a href="<?= $teacher->getWebsite() ?>" target="_blank"><?= $teacher->getName() ?></a> 
 				at <?= $space_line ?></p>
