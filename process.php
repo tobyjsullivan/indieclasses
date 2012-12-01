@@ -25,8 +25,11 @@ if($phone == "") {
 require_once('lib/Stripe.php');
 Stripe::setApiKey(Configure::read('Stripe.skey'));
 
+
+
 try {
-	$token = $_POST['stripeToken'];
+	$stripe_token = $_POST['stripeToken'];
+	$token = $stripe_token;
 	$customer = Stripe_Customer::create(array(
 		"description" => $fname." ".$lname." <".$email.">",
 		"email" => $email,
@@ -36,18 +39,16 @@ try {
 	$errors[] = $ex->getMessage();
 }
 
+$class = new _Class($class_id);
 
 if(count($errors) > 0) {
 	$view = new View("purchase");
-	$view->set('class_id', $class_id);
+	$view->set('class', $class);
 	$view->set('errors', $errors);
 	echo $view->render();
 	exit(0);
 }
 
-$stripe_token = $_POST['stripeToken'];
-
-$class = new _Class($class_id);
 
 $reg = Registration::create($class->getId(), $fname, $lname, $email, $phone, $class->getPrice());
 
