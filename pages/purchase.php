@@ -1,4 +1,6 @@
 <?php
+$class = $this->fetch('class');
+
 $this->start('page_title');
 echo "Register for Class";
 $this->end();
@@ -87,7 +89,7 @@ $this->end();
 	?>
 </div>
 <form action="/process.php" method="post">
-	<input type="hidden" name="class_id" value="<?= $this->fetch('class_id') ?>" />
+	<input type="hidden" name="class_id" value="<?= $class->getId() ?>" />
 	<div class="eight columns">
 		<label for="first-name">First Name</label>
 		<?php
@@ -108,7 +110,7 @@ $this->end();
 		<div id="input-complete">
 			<script src="https://button.stripe.com/v1/button.js" class="stripe-button" 
 				data-key="<?= Configure::read('Stripe.pkey') ?>"
-				data-amount="2500"></script>
+				data-amount="<?= $class->getPrice() * 100 ?>"></script>
 		</div>
 	</div>
 </form>

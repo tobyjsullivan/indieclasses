@@ -22,6 +22,21 @@ if($phone == "") {
 	$errors[] = "Your phone number is required.";
 }
 
+require_once('lib/Stripe.php');
+Stripe::setApiKey(Configure::read('Stripe.skey'));
+
+try {
+	$token = $_POST['stripeToken'];
+	$customer = Stripe_Customer::create(array(
+		"description" => $fname." ".$lname." <".$email.">",
+		"email" => $email,
+		"card" => $token
+		));
+} catch (Stripe_CardError $ex) {
+	$errors[] = $ex->getMessage();
+}
+
+
 if(count($errors) > 0) {
 	$view = new View("purchase");
 	$view->set('class_id', $class_id);
@@ -36,14 +51,6 @@ $class = new _Class($class_id);
 
 $reg = Registration::create($class->getId(), $fname, $lname, $email, $phone, $class->getPrice());
 
-require_once('lib/Stripe.php');
-
-Stripe::setApiKey(Configure::read('Stripe.skey'));
-$token = $_POST['stripeToken'];
-$customer = Stripe_Customer::create(array(
-	"description" => $fname." ".$lname." <".$email.">",
-	"card" => $token
-	));
 
 $reg->setStripeCustomerId($customer['id']);
 

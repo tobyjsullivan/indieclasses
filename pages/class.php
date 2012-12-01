@@ -14,7 +14,7 @@ $this->end();
 <div class="row">
 	<div class="three columns">
 		<div class="price-box">
-			<p class="price">$25</p>
+			<p class="price"><?= '$'.$class->getPrice() ?></p>
 			<?php
 			$num_registered = $class->getNumRegistered();
 			$min = $class->getMinAttendees();
@@ -58,46 +58,69 @@ $this->end();
 		</div>
 	</div>
 	<div class="ten columns">
-		<h3>Four Weeks of Hatha Yoga with Hailey</h3>
-		<p><strong>November 29th to December 20th, Thursdays at 6:15 pm</strong></p>
-		<p>Taught by <a href="http://haileyblackburn.com" target="_blank">Hailey Blackburn</a></p>
-		<p>Location: Vancouver Corporate Yoga, 134 - 1055 W Georgia St, Vancouver, BC</p>
-		<p><strong>Registration Deadline: 9:00 am November 28th</strong></p>
+		<h3><?= $class->getTitle() ?></h3>
+		<?php
+		// $when_line = "November 29th to December 20th, Thursdays at 6:15 pm";
+		$start = $class->getStartDate(); // As EPOC time representing start date and start time of day
+		$time_fmt = "g:i a";
+		$start_time = date($time_fmt, $start);
+		$reps = $class->getRepetitions();
+		if($reps == 1) {
+			$date_fmt = "l F jS, Y";
+			$start_date = date($date_fmt, $start);
+		} else {
+			$date_fmt = "F jS, Y";
+			$start_day = date($date_fmt, $start);
+			$end = $start + (7 * 24 * 60 * 60 * ($reps - 1));
+			$end_day = date($date_fmt, $end);
+			$dow = date('l', $start).'s';
+			$start_date = $start_day.' to '.$end_day.', '.$dow;
+		}
+		$when_line = $start_date.' at '.$start_time;
+		?>
+		<p><strong><?= $when_line ?></strong></p>
+		<?php
+		$teacher = $class->getTeacher();
+		?>
+		<p>Taught by <a href="<?= $teacher->getWebsite() ?>" target="_blank"><?= $teacher->getName() ?></a></p>
+		<?php
+		$space = $class->getSpace();
+		$unit = $space->getUnit();
+		$space_line = $space->getName().', '.($unit == null || $unit == ''?'':$unit.' - ').$space->getAddress().', '.$space->getCity();
+		?>
+		<p>Location: <?= $space_line ?></p>
+		<?php
+		$deadline_fmt = "g:i a F jS, Y";
+		$deadline = date($deadline_fmt, $class->getDeadline());
+		?>
+		<p><strong>Registration Deadline: <?= $deadline ?></strong></p>
 		<h3>Invite friends to this class</h3>
 		<p>Copy this address: <strong><?= Configure::read('Company.url').'/'.$class->getToken() ?></strong></p>
 	</div>
 	<div class="three columns">
 		<div class="picture">
-			<img src="images/doggy.jpg" />
+			<img src="<?= 'images/cls_'.$class->getToken().'.jpg' ?>" />
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="sixteen columns">
 		<h4>About This Class</h4>
-		<p>Friends, I would like to invite you to a four week series of hatha yoga. Before the holidays when everything is about food, it will be great to get some extra exercise! Only $25 for four classes which will be collected before the day of the first class.<br />
-		<br />
-		One hour classes 6:15 pm Thursdays November 29th to December 20th. This class is suitable for all levels and mats can be provided.<br />
-		<br />
-		It only takes 10 students to put on this series so sign up now!<br />
-		<br />
-		Namaste,<br />
-		Hailey</p>
+		<p><?= nl2br($class->getDescription()) ?></p>
 	</div>
 </div>
 <div class="sixteen columns">
 	<h2><a name="how-it-works"></a>How <?= Configure::read('Company.name') ?> Works</h2>
-	<p>* Hailey Blackburn is interested in offering a 
+	<p>* <?= $teacher->getName() ?> is interested in offering a 
 		yoga class independently. In order to do this, she 
 		needs a minimum number of students to register and pay
 		so she can afford to rent a space and make it
 		worth her time. <?= Configure::read('Company.name') ?> is here to safely
-		and conveniently collect your registration fees on her 
+		and conveniently collect your registration fees on the teacher's
 		behalf. If there are not enough registered students
 		by the deadline, <?= Configure::read('Company.name') ?> will cancel
 		the class and will not charge your credit card. Please note 
 		that any registration fees for successfully filled 
-		classes cannot be refunded and will be paid to Hailey
-		Blackburn.</p>
+		classes cannot be refunded and will be paid to <?= $teacher->getName() ?>.</p>
 	<p><strong>Are you a yoga teacher? Want to offer an independent class like this?</strong> Check out <a href="/"><?= Configure::read('Company.name') ?></a></p>
 </div>

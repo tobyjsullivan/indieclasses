@@ -1,6 +1,7 @@
 <?php
 require_once('lib/Database.php');
 require_once('lib/Teacher.php');
+require_once('lib/Space.php');
 
 class _Class {
 	private $id;
@@ -62,11 +63,23 @@ class _Class {
 		return new Teacher($this->teacher_id);
 	}
 
+	public function getSpace() {
+		$this->ensureDataFetched();
+
+		return new Space($this->space_id);
+	}
+
+	public function getPrice(){ 
+		$this->ensureDataFetched();
+
+		return $this->price;
+	}
+
 	public function getMinAttendees(){ 
 		$this->ensureDataFetched();
 
 		return $this->min_attendees;
-	}	
+	}
 
 	public function getMaxAttendees(){ 
 		$this->ensureDataFetched();
@@ -94,16 +107,34 @@ class _Class {
 		return $this->num_registered;
 	}
 
-	public function getPrice() {
-		$this->ensureDataFetched();
-
-		return $this->price;
-	}
-
 	public function getDeadline() {
 		$this->ensureDataFetched();
 
 		return $this->deadline;
+	}
+
+	public function getStartDate() {
+		$this->ensureDataFetched();
+
+		return $this->start_date;
+	}
+
+	public function getDuration() {
+		$this->ensureDataFetched();
+
+		return $this->duration;
+	}
+
+	public function getRepetitions() {
+		$this->ensureDataFetched();
+
+		return $this->repetitions;
+	}
+
+	public function getDescription() {
+		$this->ensureDataFetched();
+
+		return $this->description;
 	}
 
 	public function isCancelled() {
@@ -143,7 +174,7 @@ class _Class {
 		}
 
 		if($res->num_rows == 0) {
-			throw new Exception("Lookup failed. _Class does not exist.");
+			throw new Exception("Lookup failed. Class does not exist.");
 		}
 
 		$row = $res->fetch_assoc();
