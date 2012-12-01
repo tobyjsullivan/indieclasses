@@ -33,7 +33,7 @@
 <body>
 	<div class="container">
 		<div class="sixteen columns">
-			<h1 class="title remove-bottom"><?= Configure::read('Company.name') ?></h1>
+			<h1 class="title remove-bottom"><a href="/"><?= Configure::read('Company.name') ?></a></h1>
 			<p><em>Independent Yoga - Empowering Teachers</em></p>
 		</div>
 		<?php
