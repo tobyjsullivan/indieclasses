@@ -16,3 +16,8 @@ input.invalid {
 	font-weight: bold;
 	color: #f00;
 }
+
+select#fee-select {
+	display: inline;
+	width: 75px;
+}

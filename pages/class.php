@@ -12,15 +12,32 @@ $this->start('css');
 $this->end();
 ?>
 <div class="row">
-	<div class="three columns">
+	<div class="four columns">
 		<div class="price-box">
-			<p class="price"><?= '$'.$class->getPrice() ?></p>
+			<?php
+			$price = '$'.$class->getPrice();
+
+			if($class->getPriceRange() != null) {
+				$price .= '-'.($class->getPrice() + $class->getPriceRange());
+			}
+			?>
+			<p class="price"><?= $price ?></p>
 			<?php
 			$num_registered = $class->getNumRegistered();
-			$min = $class->getMinAttendees();
+			$amount_paid = $class->getAmountPaid();
+
+			$threshold = $class->getThreshold();
+			$threshold_type = $class->getThresholdType();
+			if($threshold_type == 'students') {
+				$below_min = $num_registered < $threshold;
+			} else if($threshold_type == 'fees') {
+				$below_min = $amount_paid < $threshold;
+			} else {
+				throw new Exception('Unknown threshold type: '.$threshold_type);
+			}
+
 			$max = $class->getMaxAttendees();
 
-			$below_min = $num_registered < $min;
 			$full = $num_registered >= $max;
 			$cancelled = $class->isCancelled();
 
@@ -41,8 +58,13 @@ $this->end();
 				<p>Sorry, the registration deadline for this class has passed.</p>
 				<?php
 			} else if($below_min) {
+				if($threshold_type == 'students') {
+					$need_line = "This class needs ".($threshold - $num_registered)." more students";
+				} else if($threshold_type == 'fees') {
+					$need_line = "This class needs $".($threshold - $amount_paid)." more in registrations";
+				}
 				?>
-				<p>This class needs <?= $min - $num_registered ?> more students*</p>
+				<p><?= $need_line ?>*</p>
 				<p class="help remove-bottom"><a href="#how-it-works">* What is this?</a></p>
 				<?php
 			} else if (!$full) {
@@ -57,12 +79,12 @@ $this->end();
 			?>
 		</div>
 	</div>
-	<div class="ten columns">
+	<div class="nine columns">
 		<h3><?= $class->getTitle() ?></h3>
 		<?php
 		// $when_line = "November 29th to December 20th, Thursdays at 6:15 pm";
 		$start = $class->getStartDate(); // As EPOC time representing start date and start time of day
-		$time_fmt = "g:i a";
+		$time_fmt = "g:i A";
 		$start_time = date($time_fmt, $start);
 		$reps = $class->getRepetitions();
 		if($reps == 1) {

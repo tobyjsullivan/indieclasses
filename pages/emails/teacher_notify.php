@@ -13,7 +13,7 @@ $class_url = Configure::read('Company.url').'/'.$class->getToken();
 </head>
 <body>
 	<p><?= $name ?> has registered for
-		<strong>Four Weeks of Hatha with Hailey</strong>.</p>
+		<strong><?= $class_title ?></strong>.</p>
 	<p>Class details: <a href="<?= $class_url ?>"><?= $class_url ?></a></p>
 
 	<p><i>Note: This email address is not monitored. Do not reply to this email. If you have
@@ -26,11 +26,13 @@ $class_url = Configure::read('Company.url').'/'.$class->getToken();
 			<th>Name</th>
 			<th>Email</th>
 			<th>Phone</th>
+			<th>Fee</th>
 		</tr>
 		<tr>
 			<td><?= $name ?></td>
 			<td><?= $reg->getEmail() ?></td>
 			<td><?= $reg->getPhone() ?></td>
+			<td><?= '$'.$reg->getAmount().'.00' ?></td>
 		</tr>
 	</table>
 

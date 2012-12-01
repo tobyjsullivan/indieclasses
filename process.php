@@ -4,6 +4,25 @@ require_once('init.php');
 $errors = array();
 
 $class_id = $_POST['class_id'];
+$class = new _Class($class_id);
+
+$price = $class->getPrice();
+$price_range = $class->getPriceRange(); 
+
+if($price_range != null) {
+	if (!array_key_exists('fee', $_POST) || $_POST['fee'] == "") {
+		$errors[] = "You must select a rate";
+	} else {
+		$fee = $_POST['fee'];
+
+		if($fee < $price || $fee > ($price + $price_range)) {
+			$errors[] = "Please select a valid rate";
+		}
+	}
+} else {
+	$fee = $price;
+}
+
 $fname = $_POST['first-name'];
 if($fname == "") {
 	$errors[] = "Your first name is required.";
@@ -39,7 +58,6 @@ try {
 	$errors[] = $ex->getMessage();
 }
 
-$class = new _Class($class_id);
 
 if(count($errors) > 0) {
 	$view = new View("purchase");
@@ -50,17 +68,18 @@ if(count($errors) > 0) {
 }
 
 
-$reg = Registration::create($class->getId(), $fname, $lname, $email, $phone, $class->getPrice());
+$reg = Registration::create($class->getId(), $fname, $lname, $email, $phone, $fee);
 
 
 $reg->setStripeCustomerId($customer['id']);
 
 // Email confirmation
 $confirm_email_view = new View("emails/register_confirm");
+$confirm_email_view->set('registration', $reg);
 $confirm_email_content = $confirm_email_view->render();
 $confirm_mailer = new Mailer();
 $confirm_mailer->setTo($email);
-$confirm_mailer->setSubject('You are registered for Four Weeks of Hatha with Hailey');
+$confirm_mailer->setSubject('You are registered for '.$class->getTitle());
 $confirm_mailer->setBody($confirm_email_content);
 $confirm_mailer->send();
 

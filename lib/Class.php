@@ -10,7 +10,9 @@ class _Class {
 	private $teacher_id;
 	private $space_id;
 	private $price;
-	private $min_attendees;
+	private $price_range;
+	private $threshold;
+	private $threshold_type;
 	private $max_attendees;
 	private $deadline;
 	private $start_date;
@@ -75,10 +77,22 @@ class _Class {
 		return $this->price;
 	}
 
-	public function getMinAttendees(){ 
+	public function getPriceRange(){ 
 		$this->ensureDataFetched();
 
-		return $this->min_attendees;
+		return $this->price_range;
+	}
+
+	public function getThreshold(){ 
+		$this->ensureDataFetched();
+
+		return $this->threshold;
+	}
+
+	public function getThresholdType(){ 
+		$this->ensureDataFetched();
+
+		return $this->threshold_type;
 	}
 
 	public function getMaxAttendees(){ 
@@ -105,6 +119,26 @@ class _Class {
 		}
 
 		return $this->num_registered;
+	}
+
+	private $amount_paid = null;
+	public function getAmountPaid() {
+		if($this->amount_paid == null) {
+			$db = new Database();
+
+			$class_id = $db->escape_string($this->id);
+			$sql = "SELECT SUM(amount) AS paid FROM registrations WHERE class_id='{$class_id}'";
+
+			if(!($res = $db->query($sql))) {
+				throw new Exception('Error fetching registration count: '.$db->error);
+			}
+
+			$row = $res->fetch_assoc();
+
+			$this->amount_paid = $row['paid'];
+		}
+
+		return $this->amount_paid;
 	}
 
 	public function getDeadline() {
@@ -158,7 +192,9 @@ class _Class {
 					teacher_id, 
 					space_id, 
 					price, 
-					min_attendees, 
+					price_range,
+					threshold,
+					threshold_type,
 					max_attendees, 
 					deadline, 
 					start_date, 
@@ -184,7 +220,9 @@ class _Class {
 		$this->teacher_id = $row['teacher_id'];
 		$this->space_id = $row['space_id'];
 		$this->price = $row['price'];
-		$this->min_attendees = $row['min_attendees'];
+		$this->price_range = $row['price_range'];
+		$this->threshold = $row['threshold'];
+		$this->threshold_type = $row['threshold_type'];
 		$this->max_attendees = $row['max_attendees'];
 		$this->deadline = strtotime($row['deadline']);
 		$this->start_date = strtotime($row['start_date']);
