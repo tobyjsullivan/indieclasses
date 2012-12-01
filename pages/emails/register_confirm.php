@@ -7,7 +7,7 @@ $class = $reg->getClass();
 $deadline_fmt = "F jS, Y";
 $deadline = date($deadline_fmt, $class->getDeadline());
 
-$start_fmt = "g:i A on l, F jS, Y";
+$start_fmt = "g:i A l, F jS, Y";
 $start_date = date($start_fmt, $class->getStartDate());
 ?>
 <html>
