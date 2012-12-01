@@ -10,7 +10,7 @@ function showContact() {
 }
 </script>
 
-<div class="sixteen columns">
+<div class="ten columns">
 
 	<h3>Current Classes</h3>
 	<?php
@@ -65,10 +65,13 @@ function showContact() {
 		}
 	}
 	?>
+</div>
+
+<div class="six columns">
 
 	<h3>Yoga Teachers</h3>
-	<p><em>If you make enough money as a yoga teacher working with studios, you don't need <?= Configure::read('Company.name') ?>. Otherwise, read on.</em></p>
-	<p>Interested in teaching independently? Make more money, build your following and enjoy more freedom.</p>
+	<p><em>Interested in teaching independently?</em><br />
+	 Make more money, build your following and enjoy more freedom.</p>
 	<p>We want to hear from teachers who are interested in using <?= Configure::read('Company.name') ?>. <span id="contact-span"><a href="javascript:showContact();">Get in touch</a></span>.
 	
 </div>

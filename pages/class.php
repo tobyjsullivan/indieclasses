@@ -11,6 +11,9 @@ $this->start('css');
 <?php
 $this->end();
 ?>
+<div class="sixteen columns">
+	<h3><?= $class->getTitle() ?></h3>
+</div>
 <div class="row">
 	<div class="four columns">
 		<div class="price-box">
@@ -80,7 +83,6 @@ $this->end();
 		</div>
 	</div>
 	<div class="nine columns">
-		<h3><?= $class->getTitle() ?></h3>
 		<?php
 		// $when_line = "November 29th to December 20th, Thursdays at 6:15 pm";
 		$start = $class->getStartDate(); // As EPOC time representing start date and start time of day
@@ -132,8 +134,8 @@ $this->end();
 	</div>
 </div>
 <div class="sixteen columns">
-	<h2><a name="how-it-works"></a>How <?= Configure::read('Company.name') ?> Works</h2>
-	<p>* <?= $teacher->getName() ?> is interested in offering a 
+	<h3><a name="how-it-works"></a>* How <?= Configure::read('Company.name') ?> Works</h3>
+	<p><?= $teacher->getName() ?> is interested in offering a 
 		yoga class independently. In order to do this, she 
 		needs a minimum number of students to register and pay
 		so she can afford to rent a space and make it

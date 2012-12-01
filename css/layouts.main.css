@@ -1,7 +1,45 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Carme', sans-serif;
+}
+
+.banner:before {
+	height: 150px;
+	width: 960px;
+	display: block;
+	background-image: url(/images/banner.jpg);
+	margin-left: -10px;
+	margin-right: -10px;
+	content: '';
+	z-index: -100;
+	border-radius: 0 0 15px 15px;
+	margin-bottom: -150px;
+}
+
+.banner {
+	height: 150px;
+	background-color: none;
+	/*
+	width: 940px;
+	position: absolute;
+	*/
+	margin-bottom: 10px;
+}
+
 .title {
 	margin-top: 40px;
+	font-family: 'Carme', sans-serif;
 }
 
 .title a {
 	text-decoration: none;
+	color: #000;
+}
+
+.title a:hover {
+	color: #333;
+}
+
+.tagline {
+	margin-left: 3px;
+	color: #000!important;
 }

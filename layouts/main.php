@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/layout.css">
 	<link rel="stylesheet" href="css/layouts.main.css">
+	<link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'>
 	<?php
 	echo $this->fetch('css');
 	?>
@@ -32,9 +33,9 @@
 </head>
 <body>
 	<div class="container">
-		<div class="sixteen columns">
-			<h1 class="title remove-bottom"><a href="/"><?= Configure::read('Company.name') ?></a></h1>
-			<p><em>Independent Yoga - Empowering Teachers</em></p>
+		<div class="sixteen columns banner">
+			<h1 class="title remove-bottom"><a href="/"><?= strtolower(Configure::read('Company.name')) ?></a></h1>
+			<p class="tagline"><strong>Independent Yoga - Empowering Teachers</strong></p>
 		</div>
 		<?php
 		echo $this->fetch('content');
