@@ -94,6 +94,10 @@ $notify_mailer->setSubject($name.' has registered for your class');
 $notify_mailer->setBody($notify_email_content);
 $notify_mailer->send();
 
+if(array_key_exists('subscribe', $_POST) && $_POST['subscribe'] == 'teacher') {
+	Subscription::create($fname, $email, $class->getTeacher()->getId());
+}
+
 $view = new View('process');
 echo $view->render();
 ?>

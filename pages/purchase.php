@@ -90,6 +90,7 @@ $this->end();
 </div>
 <form action="/process.php" method="post">
 	<input type="hidden" name="class_id" value="<?= $class->getId() ?>" />
+<div class="row">
 	<div class="eight columns">
 		
 		<label for="first-name">First Name</label>
@@ -108,6 +109,15 @@ $this->end();
 		<input type="email" id="email" name="email"  value="<?= $def_email ?>" />
 		<label for="phone">Phone Number</label>
 		<input type="text" id="phone" name="phone" value="<?= $def_phone ?>" />
+	</div>
+</div>
+	<div class="eight columns">
+		<label for="subscribe">
+			<input type="checkbox" name="subscribe" value="teacher" checked="checked" />
+			Notify me by email of future classes by <?= $class->getTeacher()->getName() ?>
+		</label>
+	</div>
+	<div class="eight columns">
 		<label for="fee-select">
 			Registration Fee: 
 			<?php
