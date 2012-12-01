@@ -112,7 +112,7 @@ $this->end();
 		?>
 		<p>Location: <?= $space_line ?></p>
 		<?php
-		$deadline_fmt = "g:i a F jS, Y";
+		$deadline_fmt = "g:i A F jS, Y";
 		$deadline = date($deadline_fmt, $class->getDeadline());
 		?>
 		<p><strong>Registration Deadline: <?= $deadline ?></strong></p>
