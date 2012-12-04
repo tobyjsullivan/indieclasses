@@ -4,11 +4,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .banner:before {
 	height: 150px;
-	width: 960px;
+	/*
+	width: inherit;
+	*/
 	display: block;
 	background-image: url(/images/banner.jpg);
+	
 	margin-left: -10px;
 	margin-right: -10px;
+	
 	content: '';
 	z-index: -100;
 	border-radius: 0 0 15px 15px;
@@ -18,6 +22,8 @@ h1, h2, h3, h4, h5, h6 {
 .banner {
 	height: 150px;
 	background-color: none;
+	margin-left: -10px;
+	margin-right: -10px;
 	/*
 	width: 940px;
 	position: absolute;
