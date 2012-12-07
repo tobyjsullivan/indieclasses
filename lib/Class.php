@@ -116,6 +116,8 @@ class _Class {
 			$row = $res->fetch_assoc();
 
 			$this->num_registered = $row['num'];
+
+			$db->close();
 		}
 
 		return $this->num_registered;
@@ -135,7 +137,9 @@ class _Class {
 
 			$row = $res->fetch_assoc();
 
-			$this->amount_paid = $row['paid'];
+			$this->amount_paid = $row['paid'];			
+
+			$db->close();
 		}
 
 		return $this->amount_paid;
@@ -175,6 +179,19 @@ class _Class {
 		$this->ensureDataFetched();
 
 		return $this->cancelled != null;
+	}
+
+	public function thresholdSatisfied() {
+		$this->ensureDataFetched();
+
+		if($this->threshold_type == 'students') {
+			return $this->getNumRegistered() >= $this->threshold;
+		} else if ($this->threshold_type == 'fees') {
+			return $this->getAmountPaid() >= $this->threshold;
+		} else {
+			throw new  Exception("Unrecognized threshold type");
+			
+		}
 	}
 
 	private function ensureDataFetched() {
@@ -231,7 +248,52 @@ class _Class {
 		$this->description = $row['description'];
 		$this->cancelled = $row['cancelled'];
 
+		$db->close();
+
 		$this->data_fetched = true;
+ 	}
+
+ 	public function setCancelled() {
+ 		$db = new Database();
+
+ 		$class_id = $db->escape_string($this->id);
+
+ 		$sql = "UPDATE classes SET cancelled=NOW() WHERE id='{$class_id}' AND cancelled IS NULL";
+
+ 		if(!$db->query($sql)) {
+ 			throw new Exception("Failed to set class as cancelled: ".$db->error);
+ 		}
+ 	}
+
+ 	public function setSucceeded() {
+ 		$db = new Database();
+
+ 		$class_id = $db->escape_string($this->id);
+
+ 		$sql = "UPDATE classes SET succeeded=NOW() WHERE id='{$class_id}' AND succeeded IS NULL";
+
+ 		if(!$db->query($sql)) {
+ 			throw new Exception("Failed to set class as successful: ".$db->error);
+ 		}
+ 	}
+
+ 	public function getRegistrations() {
+ 		$db = new Database();
+
+ 		$class_id = $db->escape_string($this->id);
+
+ 		$sql = "SELECT id FROM registrations WHERE class_id='{$class_id}'";
+
+ 		if(!($res = $db->query($sql))) {
+ 			throw new Exception("Failed to fetch registrations: ".$db->error);
+ 		}
+
+ 		$registrations = array();
+ 		while($row = $res->fetch_assoc()) {
+ 			$registrations[] = new Registration($row['id']);
+ 		}
+
+ 		return $registrations;
  	}
 }
 ?>

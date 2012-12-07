@@ -53,6 +53,21 @@ class Registration {
 		$this->stripe_customer_id = $customer_id;
 	}
 
+	public function setStripeChargeId($charge_id) {
+		$db = new Database();
+
+		$reg_id = $db->escape_string($this->id);
+		$charge_id = $db->escape_string($charge_id);
+
+		$sql = "UPDATE registrations SET stripe_charge_id='{$charge_id}' WHERE id='{$reg_id}' LIMIT 1";
+
+		if(!$db->query($sql)) {
+			throw new Exception('Failed to save transaction: '.$db->error);
+		}
+
+		$this->stripe_charge_id = $charge_id;
+	}
+
 	public function getClass() {
 		$this->ensureDataFetched();
 

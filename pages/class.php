@@ -29,15 +29,7 @@ $this->end();
 			$num_registered = $class->getNumRegistered();
 			$amount_paid = $class->getAmountPaid();
 
-			$threshold = $class->getThreshold();
-			$threshold_type = $class->getThresholdType();
-			if($threshold_type == 'students') {
-				$below_min = $num_registered < $threshold;
-			} else if($threshold_type == 'fees') {
-				$below_min = $amount_paid < $threshold;
-			} else {
-				throw new Exception('Unknown threshold type: '.$threshold_type);
-			}
+			$below_min = !$class->thresholdSatisfied();
 
 			$max = $class->getMaxAttendees();
 
@@ -61,10 +53,10 @@ $this->end();
 				<p>Sorry, the registration deadline for this class has passed.</p>
 				<?php
 			} else if($below_min) {
-				if($threshold_type == 'students') {
-					$need_line = "This class needs ".($threshold - $num_registered)." more students";
-				} else if($threshold_type == 'fees') {
-					$need_line = "This class needs $".($threshold - $amount_paid)." more in registrations";
+				if($class->getThresholdType() == 'students') {
+					$need_line = "This class needs ".($class->getThreshold() - $num_registered)." more students";
+				} else if($class->getThresholdType() == 'fees') {
+					$need_line = "This class needs $".($class->getThreshold() - $amount_paid)." more in registrations";
 				}
 				?>
 				<p><?= $need_line ?>*</p>

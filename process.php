@@ -41,9 +41,7 @@ if($phone == "") {
 	$errors[] = "Your phone number is required.";
 }
 
-require_once('lib/Stripe.php');
-Stripe::setApiKey(Configure::read('Stripe.skey'));
-
+require_once('stripe_init.php');
 
 
 try {
