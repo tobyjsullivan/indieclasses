@@ -57,7 +57,7 @@ while($row = $res->fetch_assoc())
 			$notify_email_content = $notify_email_view->render();
 			$notify_mailer = new Mailer();
 			$notify_mailer->setTo($cur_reg->getEmail());
-			$notify_mailer->setSubject('You are registered for '.$class->getTitle());
+			$notify_mailer->setSubject($class->getTitle().' is happening!');
 			$notify_mailer->setBody($notify_email_content);
 			$notify_mailer->send();
 
