@@ -1,3 +1,5 @@
 config.php
 mail_handler/Config.py
+mail_handler/logs/*
+!mail_handler/logs/.empty
 *.pyc
