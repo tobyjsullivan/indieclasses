@@ -75,22 +75,28 @@ $reg->setStripeCustomerId($customer['id']);
 $confirm_email_view = new View("emails/register_confirm");
 $confirm_email_view->set('registration', $reg);
 $confirm_email_content = $confirm_email_view->render();
+MailQueue::enqueue($email, 'You are registered for '.$class->getTitle(), $confirm_email_content);
+/*
 $confirm_mailer = new Mailer();
 $confirm_mailer->setTo($email);
 $confirm_mailer->setSubject('You are registered for '.$class->getTitle());
 $confirm_mailer->setBody($confirm_email_content);
 $confirm_mailer->send();
+*/
 
 // Email teacher notification
 $name = $fname.' '.$lname;
 $notify_email_view = new View("emails/teacher_notify");
 $notify_email_view->set('registration', $reg);
 $notify_email_content = $notify_email_view->render();
+MailQueue::enqueue($reg->getClass()->getTeacher()->getEmail(), $name.' has registered for your class', $notify_email_content);
+/*
 $notify_mailer = new Mailer();
 $notify_mailer->setTo($reg->getClass()->getTeacher()->getEmail());
 $notify_mailer->setSubject($name.' has registered for your class');
 $notify_mailer->setBody($notify_email_content);
 $notify_mailer->send();
+*/
 
 if(array_key_exists('subscribe', $_POST) && $_POST['subscribe'] == 'teacher') {
 	Subscription::create($fname, $email, $class->getTeacher()->getId());

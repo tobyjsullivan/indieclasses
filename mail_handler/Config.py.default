@@ -1,0 +1,10 @@
+MYSQL_HOSTNAME = 'localhost'
+MYSQL_USERNAME = ''
+MYSQL_PASSWORD = ''
+MYSQL_DATABASE = ''
+
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_USERNAME = ''
+EMAIL_PASSWORD = ''
+EMAIL_FROM = 'Indieclasses.com <no-reply@indieclasses.com>'

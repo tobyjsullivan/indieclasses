@@ -16,7 +16,7 @@ Configure::write('Mysql.password', '');
 Configure::write('Mysql.database', '');
 
 // Mail Configuration
-Configure::write('Mail.host', 'ssl://smtp.gmail.com');
+Configure::write('Mail.host', 'ssl://email-smtp.us-east-1.amazonaws.com');
 Configure::write('Mail.port', '465');
 Configure::write('Mail.authenticate', true);
 Configure::write('Mail.username', '');

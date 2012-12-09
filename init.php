@@ -1,6 +1,7 @@
 <?php
 require_once('lib/Configure.php');
 require_once('lib/Mailer.php');
+require_once('lib/MailQueue.php');
 require_once('lib/View.php');
 require_once('lib/Class.php');
 require_once('lib/Teacher.php');

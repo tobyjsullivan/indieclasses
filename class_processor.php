@@ -55,11 +55,15 @@ while($row = $res->fetch_assoc())
 			$notify_email_view = new View("emails/register_notify_success");
 			$notify_email_view->set('registration', $cur_reg);
 			$notify_email_content = $notify_email_view->render();
+			MailQueue::enqueue($cur_reg->getEmail(), $class->getTitle().' is happening!', $notify_email_content);
+
+			/*
 			$notify_mailer = new Mailer();
 			$notify_mailer->setTo($cur_reg->getEmail());
 			$notify_mailer->setSubject($class->getTitle().' is happening!');
 			$notify_mailer->setBody($notify_email_content);
 			$notify_mailer->send();
+			*/
 
 			echo 'Finished registering customer!<br />'.PHP_EOL;			
 		}
