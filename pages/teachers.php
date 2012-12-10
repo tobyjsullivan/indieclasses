@@ -8,7 +8,7 @@ $this->end();
 	<h3>Teach Independently. Make Yoga a Career.</h3>
 	<p>Teaching for yoga studios is great. They find the students, provide the space and
 		collect the payments. You get to just show up, do what you love, get paid and go
-		home. Unfortunately, after teaching for a few studios, you quickly realise this 
+		home. Unfortunately, after teaching for a few months, you quickly realise this 
 		isn't going to pay enough to make yoga the career you dream of. It's time to 
 		take the next step.</p>
 	<p>Teaching yoga independently is a realistic option that opens to doors to making a 
@@ -23,7 +23,9 @@ $this->end();
 	<p><strong>Step 2:</strong> Post your class on <?= Configure::read('Company.name') ?>. You get to choose 
 		your rate, minimum number of students and anything else about your class.</p>
 	<p><strong>Step 3:</strong> Promote your listing to students and have them 
-		pre-register through <?= Configure::read('Company.name') ?>. If you get your minimum number of 
+		pre-register and pre-pay through <?= Configure::read('Company.name') ?>. This means
+		you don't need to go through the hassle of collecting payments from students ever again. 
+		If you get your minimum number of 
 		students before the registration deadline, you can book your studio space and 
 		guarantee you'll get paid for the class!</p>
 	<h3>Pricing</h3>
@@ -41,8 +43,7 @@ $this->end();
 	<p><strong>$225 - $38.25 = $186.75 for you</strong></p>
 	<p>That sounds like a pretty good deal! Remember, we will automatically cancel the
 		class if you don't get your minimum number of registered students. This means 
-		you don't have to worry about showing up for half-empty classes. You get paid
-		or you get to stay home!</p>
+		you don't have to worry about showing up for half-empty classes. </p>
 	<h4>If you're ready to make a career of yoga, scroll up top and fill in your information.</h4>
 </div>
 <div class="five columns">
