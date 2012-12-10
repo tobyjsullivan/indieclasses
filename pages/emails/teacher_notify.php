@@ -36,8 +36,8 @@ $class_url = Configure::read('Company.url').'/'.$class->getToken();
 		</tr>
 	</table>
 
-	<p>Thank you for offering this class with IndieClasses.com.</p>
+	<p>Thank you for offering this class with <?= Configure::read('Company.name') ?>.</p>
 	<p>Namaste,</p>
-	<p>The IndieClasses.com Team</p>
+	<p>The <?= Configure::read('Company.name') ?> Team</p>
 </body>
 </html>

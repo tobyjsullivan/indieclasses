@@ -13,6 +13,21 @@ class Teacher {
 		$this->id = $id;
 	}
 
+	public static function create($name, $email) {
+		$db = new Database();
+
+		$name = $db->escape_string($name);
+		$email = $db->escape_string($email);
+
+		$sql = "INSERT INTO `teachers` (`id`, `name`, `email`) VALUES (NULL, '{$name}', '{$email}')";
+
+		if(!$db->query($sql)) {
+			throw new Exception('Error adding teaching: '.$db->error);
+		}
+
+		return new Teacher($db->insert_id);
+	}
+
 	public function getId() {
 		return $this->id;
 	}

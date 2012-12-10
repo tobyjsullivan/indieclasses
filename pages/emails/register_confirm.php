@@ -42,8 +42,8 @@ $start_date = date($start_fmt, $class->getStartDate());
 		</tr>
 	</table>
 
-	<p>Thank you for supporting independent yoga teachers with IndieClasses.com.</p>
+	<p>Thank you for supporting independent yoga teachers with <?= Configure::read('Company.name') ?>.</p>
 	<p>Namaste,</p>
-	<p>The IndieClasses.com Team</p>
+	<p>The <?= Configure::read('Company.name') ?> Team</p>
 </body>
 </html>

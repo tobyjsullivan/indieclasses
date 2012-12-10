@@ -49,7 +49,7 @@
 		?> 
 		<div class="sixteen columns">
 			<hr />
-			<p><small>&copy; Copyright 2012 IndieClasses.com</small></p>
+			<p><small>&copy; Copyright 2012 <?= Configure::read('Company.name') ?></small></p>
 		</div>
 	</div>
 </body>
