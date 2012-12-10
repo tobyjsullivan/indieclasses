@@ -5,6 +5,9 @@ Configure::write('Company.url', 'http://indieclasses.com');
 Configure::write('Company.email', 'contact@indieclasses.com');
 Configure::write('Company.no-reply', 'no-reply@indieclasses.com');
 
+// Debug info
+Configure::write('Instance.debug', '1');
+
 // Stripe Configuration
 Configure::write('Stripe.pkey', '');
 Configure::write('Stripe.skey', '');
