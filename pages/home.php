@@ -16,7 +16,7 @@ function showContact() {
 	<?php
 	$db = new Database();
 
-	$sql = "SELECT id FROM classes WHERE deadline>NOW() AND cancelled is NULL ORDER BY start_date";
+	$sql = "SELECT id FROM classes WHERE deadline>NOW() AND cancelled is NULL AND private='0' ORDER BY start_date";
 
 	if(!($res = $db->query($sql))) {
 		throw new Exception("Failed to fetch classes: ".$db->error);
