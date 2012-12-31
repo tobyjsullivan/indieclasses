@@ -12,9 +12,7 @@
 
 	<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css">
+	<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
 	<link rel="stylesheet" href="css/layouts.main.css">
 	<link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'>
 	<?php
@@ -25,15 +23,16 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/backstretch.js" type="text/javascript"></script>
 	<?php
 	echo $this->fetch('script');
 	?>
-	
+
+
 	<script type="text/javascript">
-	document.write('<scr' + 'ipt src="' + document.location.protocol + '//fby.s3.amazonaws.com/fby.js?100"></scr' + 'ipt>');
-	</script>
-	<script type="text/javascript">
-	FBY.showTab({id: '3494', position: 'right', color: '#2E88D1'});
+	$(window).ready(function() {
+		$.backstretch("http://indieclasses.localhost/img/yoga_class_blur.jpg");
+	});
 	</script>
 
 	<title><?= $this->fetch('page_title') ?> - <?= Configure::read('Company.name') ?></title>
@@ -60,18 +59,43 @@
 	?>
 </head>
 <body>
-	<div class="container">
-		<div class="sixteen columns banner">
-			<h1 class="title remove-bottom"><a href="/"><?= strtolower(Configure::read('Company.name')) ?></a></h1>
-			<p class="tagline"><strong>Independent Yoga - Empowering Teachers</strong></p>
-		</div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="./">Indie Classes</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="./">Home</a></li>
+						<li><a href="./about">About</a></li>
+						<li><a href="./contact">Contact</a></li>
+					</ul>
+					<!--
+					<form class="navbar-form pull-right">
+						<input class="span2" type="text" placeholder="Name">
+						<input class="span2" type="email" placeholder="Email">
+						<button type="submit" class="btn">Sign Up</button>
+					</form>
+					<p class="navbar-text pull-right">Get updated by email:&nbsp;</p>
+					-->
+				</div><!--/.nav-collapse -->
+			</div> <!-- /.container -->
+		</div> <!-- /.navbar-inner -->
+	</div> <!-- /.navbar -->
+
+	<div class="container main-container">
 		<?php
 		echo $this->fetch('content');
 		?> 
-		<div class="sixteen columns">
-			<hr />
-			<p><small>&copy; Copyright 2012 <?= Configure::read('Company.name') ?></small></p>
-		</div>
+		<div class="row">
+			<footer class="span10 offset1">
+				<p>&copy; Copyright 2013 <?= Configure::read('Company.name') ?></p>
+			</footer>
+		</div> <!-- /.row -->
 	</div>
 </body>
 </html>

@@ -1,51 +1,41 @@
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Carme', sans-serif;
+body {
+	/* background-color: #d7d7ff;
+	background-image: url(/img/bg_whistler.jpg); */
 }
 
-.banner:before {
-	height: 150px;
-	/*
-	width: inherit;
-	*/
-	display: block;
-	background-image: url(/images/banner.jpg);
-	
-	margin-left: -10px;
-	margin-right: -10px;
-	
-	content: '';
-	z-index: -100;
-	border-radius: 0 0 15px 15px;
-	margin-bottom: -150px;
+.main-container {
+	margin-top: 60px;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding-top: 60px;
+	padding-bottom: 60px;
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+	border-radius: 4px;
 }
 
-.banner {
-	height: 150px;
-	background-color: none;
-	margin-left: -10px;
-	margin-right: -10px;
-	/*
-	width: 940px;
-	position: absolute;
-	*/
-	margin-bottom: 10px;
+.main-container h1 {
+	font-size: 60px;
+	line-height: 1;
+	letter-spacing: -1px;
 }
 
-.title {
-	margin-top: 40px;
-	font-family: 'Carme', sans-serif;
+.sign-up {
+	border-radius: 8px;
+	border: 1px solid #666;
+	background-color: #ccc;
 }
 
-.title a {
-	text-decoration: none;
-	color: #000;
+.sign-up-content {
+	padding: 10px;
 }
 
-.title a:hover {
-	color: #333;
+.sign-up-form input {
+	width: 186px;
 }
 
-.tagline {
-	margin-left: 3px;
-	color: #000!important;
+footer {
+	margin-top: 60px;
+}
+
+footer p {
+	/* color: #333; */
 }
