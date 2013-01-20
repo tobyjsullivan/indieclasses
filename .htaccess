@@ -1,3 +1,6 @@
 RewriteEngine On
-RewriteRule ^([cC][a-zA-Z0-9]+)$ /class.php?class=$1 [L]
-RewriteRule ^[tT][eE][aA][cC][hH]$ /teachers.php [L]
+RewriteRule ^index.php(.*) - [L]
+RewriteRule ^(js|css|img|images)/ - [L]
+RewriteRule ^([cC][lL][sS][a-zA-Z0-9]+)$ /index.php?page=class&class=$1 [L]
+RewriteRule ^[tT][eE][aA][cC][hH]$ /index.php?page=teachers [L]
+RewriteRule ^(.+)$ /index.php?page=$1 [L]

@@ -37,6 +37,10 @@ class View {
 	}
 
 	private function _render($view_file) {
+		if(!file_exists($view_file)) {
+			throw new ViewException("The view does not exist");
+		}
+
 		ob_start();
 		include($view_file);
 		return ob_get_clean();
