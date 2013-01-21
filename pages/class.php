@@ -1,5 +1,11 @@
 <?php
-$class = $this->fetch('class');
+
+$class_token = $_GET['class'];
+
+$class = _Class::lookupByToken($class_token);
+if($class == null) {
+	die('Error: Class could not be found');
+}
 
 $this->start('page_title');
 echo $class->getTitle();
@@ -11,11 +17,13 @@ $this->start('css');
 <?php
 $this->end();
 ?>
-<div class="sixteen columns">
-	<h3><?= $class->getTitle() ?></h3>
+<div class="row">
+	<div class="span12">
+		<h1 class="class-title"><?= $class->getTitle() ?></h1>
+	</div>
 </div>
 <div class="row">
-	<div class="four columns">
+	<div class="span3">
 		<div class="price-box">
 			<?php
 			$price = '$'.$class->getPrice();
@@ -24,7 +32,7 @@ $this->end();
 				$price .= '-'.($class->getPrice() + $class->getPriceRange());
 			}
 			?>
-			<p class="price"><?= $price ?></p>
+			<p class="price"><?= $price ?><span class="plus-tax">+ HST</span></p>
 			<?php
 			$num_registered = $class->getNumRegistered();
 			$amount_paid = $class->getAmountPaid();
@@ -40,7 +48,7 @@ $this->end();
 
 			if(!($full || $past_deadline || $cancelled)) {
 				?>
-				<p><a href="<?= 'purchase.php?class='.$class->getToken() ?>" class="register-now button remove-bottom">Register Now</a></p>
+				<p><a href="<?= 'purchase?class='.$class->getToken() ?>" class="btn btn-primary">Register Now</a></p>
 				<?php
 			}
 
@@ -74,7 +82,7 @@ $this->end();
 			?>
 		</div>
 	</div>
-	<div class="nine columns">
+	<div class="span6">
 		<?php
 		// $when_line = "November 29th to December 20th, Thursdays at 6:15 pm";
 		$start = $class->getStartDate(); // As EPOC time representing start date and start time of day
@@ -113,30 +121,32 @@ $this->end();
 		<h3>Invite friends to this class</h3>
 		<p>Copy this address: <strong><?= Configure::read('Company.url').'/'.$class->getToken() ?></strong></p>
 	</div>
-	<div class="three columns">
+	<div class="span3">
 		<div class="picture">
 			<img src="<?= 'images/cls_'.$class->getToken().'.jpg' ?>" />
 		</div>
 	</div>
 </div>
 <div class="row">
-	<div class="sixteen columns">
+	<div class="span12">
 		<h4>About This Class</h4>
 		<p><?= nl2br($class->getDescription()) ?></p>
 	</div>
 </div>
-<div class="sixteen columns">
-	<h3><a name="how-it-works"></a>* How <?= Configure::read('Company.name') ?> Works</h3>
-	<p><?= $teacher->getName() ?> is interested in offering a 
-		yoga class independently. In order to do this, she 
-		needs a minimum number of students to register and pay
-		so she can afford to rent a space and make it
-		worth her time. <?= Configure::read('Company.name') ?> is here to safely
-		and conveniently collect your registration fees on the teacher's
-		behalf. If there are not enough registered students
-		by the deadline, <?= Configure::read('Company.name') ?> will cancel
-		the class and will not charge your credit card. Please note 
-		that any registration fees for successfully filled 
-		classes cannot be refunded and will be paid to <?= $teacher->getName() ?>.</p>
-	<p><strong>Are you a yoga teacher? Want to offer an independent class like this?</strong> Check out <a href="/"><?= Configure::read('Company.name') ?></a></p>
+<div class="row">
+	<div class="span12">
+		<h3><a name="how-it-works"></a>* How <?= Configure::read('Company.name') ?> Works</h3>
+		<p><?= $teacher->getName() ?> is interested in offering a 
+			yoga class independently. In order to do this, she 
+			needs a minimum number of students to register and pay
+			so she can afford to rent a space and make it
+			worth her time. <?= Configure::read('Company.name') ?> is here to safely
+			and conveniently collect your registration fees on the teacher's
+			behalf. If there are not enough registered students
+			by the deadline, <?= Configure::read('Company.name') ?> will cancel
+			the class and will not charge your credit card. Please note 
+			that any registration fees for successfully filled 
+			classes cannot be refunded and will be paid to <?= $teacher->getName() ?>.</p>
+		<p><strong>Are you a yoga teacher? Want to offer an independent class like this?</strong> Check out <a href="/"><?= Configure::read('Company.name') ?></a></p>
+	</div>
 </div>
