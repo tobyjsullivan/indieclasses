@@ -1,3 +1,7 @@
+h1.class-title {
+	font-size: 24pt;
+}
+
 .picture {
 	text-align: center;
 }
@@ -12,6 +16,7 @@
 	border-radius: 10px;
 	border: 1px solid #000;
 	text-align: center;
+	padding: 5px;
 }
 
 .price {
@@ -19,6 +24,12 @@
 	line-height: normal;
 	font-weight: bold;
 	margin-top: 10px;
+}
+
+.plus-tax {
+	font-size: 12px;
+	line-height: normal;
+	margin-top: 0px;
 }
 
 .register-now, 

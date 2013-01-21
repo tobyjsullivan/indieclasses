@@ -38,7 +38,7 @@ $start_date = date($start_fmt, $class->getStartDate());
 		<tr>
 			<td style="text-align: left;"><?= $class->getTitle() ?></td>
 			<td style="text-align: center;"><?= $start_date ?></td>
-			<td style="text-align: center;"><?= '$'.$reg->getAmount().'.00' ?></td>
+			<td style="text-align: center;"><?= '$'.$reg->getAmount() ?></td>
 		</tr>
 	</table>
 

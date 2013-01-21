@@ -10,7 +10,8 @@ function showContact() {
 }
 </script>
 
-<div class="ten columns">
+<div class="row">
+<div class="span7 offset1">
 
 	<h3>Take a Class</h3>
 	<?php
@@ -67,7 +68,7 @@ function showContact() {
 	?>
 </div>
 
-<div class="six columns">
+<div class="span3">
 
 	<h3>Yoga Teachers</h3>
 	<p><em>Interested in teaching independently?</em><br />
@@ -77,3 +78,5 @@ function showContact() {
 
 	
 </div>
+
+</div> <!-- /.row -->
