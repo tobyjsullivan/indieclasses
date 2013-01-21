@@ -17,11 +17,15 @@ $this->end();
 	</div>
 	<div class="row">
 		<div class="span7 offset1">
-			<p>Something big is coming in March 2013. 
+			<p>Something big is coming in June 2013. 
 				<em>We're going to change how you take yoga.</em></p>
-				<p>Be ready for our announcement on March 2nd, 2013.</p>
+				<p>Be ready for our announcement on June 1st, 2013.</p>
+				<?php
+				/*
 				<p>Have friends who love yoga? Don't let them miss out!</p>
 				<p>[ Share on Facebook ] [ Tweet About This ]</p>
+				*/
+				?>
 			</div> <!-- /.span10 -->
 			<div class="sign-up span3">
 				<div class="sign-up-content">
