@@ -32,7 +32,7 @@ $class_url = Configure::read('Company.url').'/'.$class->getToken();
 			<td><?= $name ?></td>
 			<td><?= $reg->getEmail() ?></td>
 			<td><?= $reg->getPhone() ?></td>
-			<td><?= '$'.$reg->getAmount().'.00' ?></td>
+			<td><?= '$'.$reg->getAmount() ?></td>
 		</tr>
 	</table>
 

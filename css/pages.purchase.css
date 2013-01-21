@@ -21,3 +21,24 @@ select#fee-select {
 	display: inline;
 	width: 75px;
 }
+
+.invoice {
+	margin: 50px;
+}
+
+.invoice td.item {
+	width: 125px;
+}
+
+.invoice td.amount {
+	width: 60px;
+	text-align: right;
+}
+
+tr.total td.amount {
+	border-top: 1px solid #000;
+}
+
+tr.total td {
+	font-weight: bold;
+}

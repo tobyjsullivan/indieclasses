@@ -32,7 +32,7 @@ $this->end();
 				$price .= '-'.($class->getPrice() + $class->getPriceRange());
 			}
 			?>
-			<p class="price"><?= $price ?></p>
+			<p class="price"><?= $price ?><span class="plus-tax">+ HST</span></p>
 			<?php
 			$num_registered = $class->getNumRegistered();
 			$amount_paid = $class->getAmountPaid();
@@ -48,7 +48,7 @@ $this->end();
 
 			if(!($full || $past_deadline || $cancelled)) {
 				?>
-				<p><a href="<?= 'purchase.php?class='.$class->getToken() ?>" class="register-now button remove-bottom">Register Now</a></p>
+				<p><a href="<?= 'purchase?class='.$class->getToken() ?>" class="btn btn-primary">Register Now</a></p>
 				<?php
 			}
 

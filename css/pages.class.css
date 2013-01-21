@@ -26,6 +26,12 @@ h1.class-title {
 	margin-top: 10px;
 }
 
+.plus-tax {
+	font-size: 12px;
+	line-height: normal;
+	margin-top: 0px;
+}
+
 .register-now, 
 .register-now:visited, 
 .register-now:active {

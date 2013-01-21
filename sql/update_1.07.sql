@@ -17,3 +17,5 @@ CREATE TABLE IF NOT EXISTS `newsletter_recipients` (
   `created` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE  `registrations` CHANGE  `amount`  `amount` DECIMAL( 11, 2 ) NOT NULL;
