@@ -17,6 +17,7 @@ $this->end();
 	</div>
 	<div class="row">
 		<div class="span7 offset1">
+			<img src="/img/yoga_class_splash.jpg" alt="Yoga class" class="splash-image" />
 			<p>Something big is coming in June 2013. 
 				<em>We're going to change how you take yoga.</em></p>
 				<p>Be ready for our announcement on June 1st, 2013.</p>
