@@ -31,7 +31,7 @@
 
 	<script type="text/javascript">
 	$(window).ready(function() {
-		$.backstretch("http://indieclasses.localhost/img/yoga_class_blur.jpg");
+		$.backstretch("/img/yoga_class_blur.jpg");
 	});
 	</script>
 
